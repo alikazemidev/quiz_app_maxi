@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app_maxi/models/quiz_question.dart';
 
 import 'data/questions.dart';
 
@@ -42,49 +43,59 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               Text(
                 questions[questionNumber].text,
                 textAlign: TextAlign.center,
-                style:const TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 17,
                 ),
               ),
-              SizedBox(
-                height: 350,
-                child: ListView.builder(
-                  itemCount: questions[questionNumber].answers.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        padding:const EdgeInsets.all(15),
-                        margin:const EdgeInsets.symmetric(
-                          vertical: 15,
-                          horizontal: 10,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.blue.shade800,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Text(
-                          questions[questionNumber].answers[index],
-                          style:const TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
+              //* answers list
               ElevatedButton(
                 onPressed: goNext,
-                style: ElevatedButton.styleFrom(minimumSize: Size(300, 40)),
+                style: ElevatedButton.styleFrom(
+                  minimumSize:const Size(300, 40),
+                ),
                 child: const Text('next'),
-              )
+              ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AnswersButton extends StatelessWidget {
+  const AnswersButton({
+    super.key,
+    required this.questionNumber,
+    required this.AnswerText,
+  });
+
+  final int questionNumber;
+  final String AnswerText;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        margin: const EdgeInsets.symmetric(
+          vertical: 15,
+          horizontal: 10,
+        ),
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 0, 30, 65),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Text(
+          AnswerText,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 17,
           ),
         ),
       ),
